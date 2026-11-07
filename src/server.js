@@ -7,6 +7,7 @@ import http from 'node:http';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import fs from 'node:fs';
+import { rm } from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
 import ffmpegStatic from 'ffmpeg-static';
@@ -67,7 +68,7 @@ const server = http.createServer(async (req, res) => {
     if (!res.headersSent) res.writeHead(502);
     res.end();
   } finally {
-    fs.rm(dir, { recursive: true, force: true }).catch(() => {});
+    try { await rm(dir, { recursive: true, force: true }); } catch {}
   }
 });
 server.listen(PORT, () => console.log('[relay] listening on', PORT));
