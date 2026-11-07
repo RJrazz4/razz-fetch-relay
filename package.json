@@ -1,0 +1,1 @@
+{"dependencies":{"ffmpeg-static":"^5.2.0"},"main":"src/server.js","name":"razz-fetch-relay","scripts":{"start":"node src/server.js"},"type":"module","version":"1.0.0"}
